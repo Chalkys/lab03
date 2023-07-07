@@ -22,8 +22,8 @@ void svg_end() {
 	cout << "</svg>\n";
 }
 
-void svg_text(double left, double baseline, string text) {
-	cout << "<text x='20' y='35'>anything you want</text>";
+void svg_text(double left, double baseline, string text, string size) {
+	cout << "<text x='" << left << "' y='" << baseline << "' font-size='" << size << "px'>" << text << "</text>";
 }
 
 void show_histogram_svg(const vector<size_t>& bins) {
@@ -42,6 +42,22 @@ void show_histogram_svg(const vector<size_t>& bins) {
 	// гистограмма
 	double top = 0;
 	size_t cnt = 0;
+	int size = 12;
+	int u_size;
+	link:
+	cin >> u_size;
+	if (u_size < 8) {
+		cerr << "Значение слишком маленькое, введите другое";
+		goto link;
+	}
+	else if (u_size > 32) {
+		cerr << "Значение слишком большое, введите другое";
+		goto link;
+	}
+	else {
+		size = u_size;
+	}
+
 	for (size_t bin = 0; bin < bins.size() - 1; bin++) {
 		cnt += bins[bin];
 
@@ -53,7 +69,8 @@ void show_histogram_svg(const vector<size_t>& bins) {
 			bin_width = BLOCK_WIDTH * cnt;
 		}
 
-		svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
+		//const double bin_width = BLOCK_WIDTH * cnt;
+		svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(cnt), to_string(size));
 		svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "red", "#ffeeee");
 		top += BIN_HEIGHT;
 	}
@@ -64,6 +81,7 @@ void show_histogram_svg(const vector<size_t>& bins) {
 
 void svg_rect(double x, double y, double width, double height, string stroke, string fill) {
 	cout << "<rect x='" << x << "' y='" << y << "' width='" << width << "' height='" << height << "' stroke='" << stroke << "' fill='" << fill << "'/>\n";
+	//cout << "<rect x='0' y='0' width='100' height='200' />";
 }
 
 #endif // SVG_WORK_H_INCLUDED
