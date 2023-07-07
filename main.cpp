@@ -42,7 +42,15 @@ void show_histogram_svg(const vector<size_t>& bins) {
 	size_t cnt = 0;
 	for (size_t bin = 0; bin < bins.size() - 1; bin++) {
 		cnt += bins[bin];
-		const double bin_width = BLOCK_WIDTH * cnt;
+
+		double bin_width;
+		if (bins[bins.size() - 1] > 76) {
+			bin_width = BLOCK_WIDTH * (76 * (static_cast<double>(cnt) / bins[bins.size() - 1]));
+		}
+		else {
+			bin_width = BLOCK_WIDTH * cnt;
+		}
+
 		svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
 		svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "red", "#ffeeee");
 		top += BIN_HEIGHT;
@@ -54,7 +62,6 @@ void show_histogram_svg(const vector<size_t>& bins) {
 
 void svg_rect(double x, double y, double width, double height, string stroke, string fill) {
 	cout << "<rect x='" << x << "' y='" << y << "' width='" << width << "' height='" << height << "' stroke='" << stroke << "' fill='" << fill << "'/>\n";
-	//cout << "<rect x='0' y='0' width='100' height='200' />";
 }
 
 vector<size_t> input1(int n) {
@@ -153,32 +160,6 @@ int main() {
 
 	vector<size_t> new_fin = gist(bins, bin_count);
 
-
-	size_t height;
-	size_t cnt = 0;
-
-	/*
-	for (int i = 0; i < new_fin.size() - 1; i++) {
-
-
-		cnt += new_fin[i];
-
-		if (new_fin[new_fin.size() - 1] > 76) {
-			height = 76 * (static_cast<double>(cnt) / new_fin[new_fin.size() - 1]);
-		}
-		else {
-			height = cnt;
-		}
-
-		cout << setw(3) << cnt << '|';
-
-		for (int j = 0; j < height; j++) {
-			cout << '*';
-		}
-
-		cout << endl;
-	}
-	*/
 	show_histogram_svg(new_fin);
 	return 0;
 }
