@@ -4,6 +4,7 @@
 #include<set>
 #include<iomanip>
 #include <algorithm>
+#include "modul-test.h"
 using namespace std;
 void svg_rect(double x, double y, double width, double height, string stroke = "blue", string fill = "blue");
 
@@ -72,24 +73,6 @@ vector<size_t> input1(int n) {
 	return bins;
 }
 
-size_t max_min(vector<size_t> v1, int m) {
-	size_t min = v1[0], max = v1[0];
-
-	for (int i = 1; i < v1.size(); i++) {
-		if (v1[i] < min) {
-			min = v1[i];
-		}
-		if (v1[i] > max) {
-			max = v1[i];
-		}
-	}
-
-	if (m == 0) {
-		return min;
-	}
-	else if (m == 1)
-		return max;
-}
 
 vector<size_t> gist(vector<size_t> v, double bin_count) {
 
@@ -150,7 +133,6 @@ int main() {
 	setlocale(LC_ALL, "Rus");
 	int n;
 	double bin_count;
-	bool newF = true;
 
 	cin >> n;
 	vector<size_t> bins(n);

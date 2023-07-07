@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1688692082 source:c:\users\user\desktop\lab03\pahom\project\main.cpp
+	<iostream>
+	<string>
+	<vector>
+	<set>
+	<iomanip>
+	<algorithm>
+	"modul-test.h"
+
+1688691627 c:\users\user\desktop\lab03\pahom\project\modul-test.h
+	<vector>
+
+1688692398 source:c:\users\user\desktop\lab03\pahom\project\modul-test.cpp
+	"modul-test.h"
+
