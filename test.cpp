@@ -8,6 +8,13 @@ void test_positive() {
     min = max_min({1, 2, 3}, 0);
     assert(min == 1);
     assert(max == 3);
+
+    /*
+    max = max_min({0, -2, -3}, 1);
+    min = max_min({0, -2, -3}, 0);
+    assert(min == -3);
+    assert(max == 0);
+    */
 }
 
 int main () {

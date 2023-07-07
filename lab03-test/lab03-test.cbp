@@ -31,6 +31,12 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../modul-test.cpp" />
+		<Unit filename="../modul-test.h" />
+		<Unit filename="../svg_work.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../test.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
